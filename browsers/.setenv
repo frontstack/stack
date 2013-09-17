@@ -1,0 +1,12 @@
+#!/bin/bash
+
+PACKAGEPATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+#### EMBEBED BROWSERS ####
+PHANTOMJS_BIN="$PACKAGEPATH/phantomjs/bin/phantomjs"
+export PHANTOMJS_BIN
+PATH="$PACKAGEPATH/phantomjs/bin:$PATH"
+
+SLIMERJSLAUNCHER="$PACKAGEPATH/slimerjs/slimerjs"
+export SLIMERJSLAUNCHER
+PATH="$PACKAGEPATH/slimerjs/:$PATH"

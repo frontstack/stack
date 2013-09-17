@@ -1,0 +1,18 @@
+#!/bin/bash
+
+PACKAGEPATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+#### COMMON SHARED LIBRARIES ####
+LD_LIBRARY_PATH="$PACKAGEPATH/lib:$LD_LIBRARY_PATH"
+C_INCLUDE_PATH="$PACKAGEPATH/include"
+
+#### OpenSSL ####
+if [ -d "$PACKAGEPATH/ssl/" ]; then
+  DYLD_LIBRARY_PATH="$PACKAGEPATH/lib:$DYLD_LIBRARY_PATH"
+  OPENSSL_CONF="$PACKAGEPATH/ssl/openssl.cnf"
+  export OPENSSL_CONF
+  export DYLD_LIBRARY_PATH
+fi
+
+export LD_LIBRARY_PATH
+export C_INCLUDE_PATH

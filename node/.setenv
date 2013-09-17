@@ -1,0 +1,11 @@
+#!/bin/bash
+
+PACKAGEPATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+#### NODE.JS ####
+LD_LIBRARY_PATH="$PACKAGEPATH/node/lib:$LD_LIBRARY_PATH"
+NODE_PATH="$PACKAGEPATH/node:$PACKAGEPATH/lib/node_modules"
+NODE_ENV=development
+export NODE_ENV
+export NODE_PATH
+export LD_LIBRARY_PATH

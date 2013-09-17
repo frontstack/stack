@@ -1,0 +1,10 @@
+#!/bin/bash
+
+PACKAGEPATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+#### Python ####
+LD_LIBRARY_PATH="$PACKAGEPATH/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH
+
+PYTHONPATH="$PACKAGEPATH"
+export PYTHONPATH
