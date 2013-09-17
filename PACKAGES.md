@@ -1,0 +1,15 @@
+# Stack packages
+
+  * Node 0.10.17
+    * NPM 1.3.8
+    * Yeoman 1.0.0-rc.1.3
+    * Grunt-cli 0.1.9
+    * Bower 1.0.3
+    * Node-gyp
+  * Ruby 1.9.3-p448
+    * Compass 0.12.2
+  * Python 2.7.5
+  * Perl 5.16.3
+  * PhantomJS 1.9.1
+  * SlimerJS 0.8
+  * CasperJS 1.1-beta1
