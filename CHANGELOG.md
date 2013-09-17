@@ -1,5 +1,3 @@
 # Changelog
 
-### 0.1.0 `17/09/2013`
-
-  * First public release
+See https://github.com/frontstack/frontstack/blob/master/CHANGELOG.md
