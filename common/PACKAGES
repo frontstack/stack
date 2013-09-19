@@ -1,0 +1,12 @@
+# Shared libraries
+ * LibYAML 0.1.4
+ * OpenSSL 1.0.1e
+ * Libmcrypt
+ * Libcrypto
+ * LibXML
+ * LibJPEG
+ * LibPNG 
+ * LibFreeType
+ * LibFontConfig
+ * LibBz2
+ * LibTiff
