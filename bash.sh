@@ -1,19 +1,15 @@
 #!/bin/bash
 #
-# Creates a new bash session with custom environment variables
+# Creates a new bash session with the FrontStack environment variables
 #
 
-ENV_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+env_path=$(cd "$( dirname "${BASH_SOURCE[0]}")" && pwd)
+version=$(cat $env_path/VERSION | awk '{print $1}')
 
-. "${ENV_PATH}/scripts/setenv.sh"
+. "${env_path}/scripts/setenv.sh"
 
-# Env tools
-if [ -d "${ENV_PATH}/../tools/" ]; then
-  . "${ENV_PATH}/../tools/scripts/setenv.sh"
-fi
+echo "Welcome to FrontStack $version"
 
-#if [ ! -d "${ENV_PATH}/../build/" ]; then
-#  mkdir "${ENV_PATH}/../build/"
-#fi
+export PS1="\e[00;36m\u@frontstack-$version:\W \e[00m\$ "
 
-exec /bin/bash --noprofile --norc
+exec /bin/bash --noprofile
