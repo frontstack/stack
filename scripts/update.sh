@@ -16,6 +16,12 @@ check_exit() {
   fi
 }
 
+make_dir() {
+  if [ ! -d $1 ]; then
+    mkdir $1
+  fi
+}
+
 get_version() {
 	if [ ! -f "$1" ]; then
     echo 0
@@ -110,6 +116,7 @@ check_exit "Error while trying to download FrontStack. See $output"
 echo 
 echo 'Extracting...'
 [ -d /tmp/fronstack ] && rm -rf /tmp/frontstack
+make_dir /tmp/frontstack
 tar xvfz $download_dir/frontstack-latest.$fs_format -C /tmp/frontstack > $output 2>&1
 check_exit "Error while extracting files. Be sure you have write permissions. See $output"
 

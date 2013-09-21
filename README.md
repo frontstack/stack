@@ -2,13 +2,17 @@
 
 ## Usage
  
-1. Run bash.sh script for use the specific environment variables
+1. Run bash.sh to create a new bash session with the environment variables
 
 2. Enjoy!
 
 ## Update environment
 
-`TODO...`
+Simply run:
+
+```shell
+$ $FRONTSTACK/scripts/update.sh
+```
 
 ## Packages
 
