@@ -1,4 +1,4 @@
-# Stack packages
+# Packages list
 
   * Node 0.10.17
     * NPM 1.3.8
@@ -12,3 +12,16 @@
   * PhantomJS 1.9.1
   * SlimerJS 0.8
   * CasperJS 1.1-beta1
+
+  * Shared libraries
+    * LibYAML 0.1.4
+    * OpenSSL 1.0.1e
+    * Libmcrypt
+    * Libcrypto
+    * LibXML
+    * LibJPEG
+    * LibPNG 
+    * LibFreeType
+    * LibFontConfig
+    * LibBz2
+    * LibTiff
