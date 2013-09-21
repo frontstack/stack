@@ -1,3 +1,5 @@
-# Changelog
+# FrontStack ChangeLog
 
-See https://github.com/frontstack/frontstack/blob/master/CHANGELOG.md
+`0.1.0` 
+
+ - Initial public version

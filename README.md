@@ -1,42 +1,50 @@
 # FrontStack
 
+Self-contained, portable and ready-to-run GNU/Linux x64 software stack for modern web projects development
+
+`FrontStack is in beta stage`
+
 ## Usage
- 
-1. Run bash.sh to create a new bash session with the environment variables
 
-2. Enjoy!
+1. Run `bash.sh` to create a new bash session with specific environment variables
 
-## Update 
+2. Create your workspace directory and start coding!
 
-You can easily upgrade whole Front Stack environment simply running the following script:
+## Update
+
+You can easily upgrade the whole FrontStack environment simply running the following script:
 
 ```shell
-$ $FRONTSTACK/scripts/update.sh
+$  ~/scripts/update.sh
 ```
 
-Note that all files and directories will be overwritten, except the `packages/` directory
+Note that all files and directories will be overwritten, except the `packages/` directory.
+
+You probably will need to instal Node or Ruby packages via it's own package manager, right? And what happens if I do an upgrade?
+All the Node packages or Ruby gems you install during your development will be installed at the `packages/` directory and this will be ignored by the update process, so all the packages will remain after updates.
 
 ## Packages
 
-See PACKAGES.md file
+See `PACKAGES.md` file
 
-# TODO
+## TODO
 
-- Documentation and Website
+- Add documentation and FAQ
 - Fix browsers fontconfig lib issue
 - Improve Python support
 - Add cURL support
 - Add Git (and Perl) support?
+- Python package manager
 
-# Issues
+## Issues
 
-Please, feel free to report any issue you experiment via Github:
+Feel free to report any issue you experiment via Github:
 https://github.com/frontstack/stack/issues
 
-# Author
+## Authors
 
 - [Tomas Aparicio](https://github.com/h2non)
 
-# License
+## License
 
 Bash scripts are releases under the [WTFPL](http://www.wtfpl.net/txt/copying/)
