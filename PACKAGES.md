@@ -9,7 +9,6 @@
   * Ruby 1.9.3-p448
     * Compass 0.12.2
   * Python 2.7.5
-  * Perl 5.16.3
   * PhantomJS 1.9.1
   * SlimerJS 0.8
   * CasperJS 1.1-beta1

@@ -77,7 +77,7 @@ check_exit "Cannot check the latest version. See $output"
 latest_version=`get_version /tmp/frontstack-latest`
 [ $latest_version == '0' ] && echo "Latest version file don't exists. Check the Internet connectivity" && exit 1
 
-if [ $latest_version != $version ]; then
+if [ $latest_version == $version ]; then
   echo 'Your FrontStack environment is up to date' && exit 0
 fi 
 
