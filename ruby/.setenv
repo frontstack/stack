@@ -3,8 +3,9 @@
 PACKAGEPATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 #### RUBY ENV ####
-GEM_HOME="$PACKAGEPATH/lib/ruby/gems/1.9.1"
-GEM_PATH="$PACKAGEPATH/lib/ruby/gems/1.9.1"
+GEM_HOME=$( cd "$(dirname $PACKAGEPATH)/packages/ruby/gems/1.9.1" && pwd )
+#$(echo "$( cd "$( dirname "$PACKAGEPATH" )/../" && pwd )/packages/ruby/gems/1.9.1") #"$PACKAGEPATH/../packages/ruby/gems/1.9.1"
+GEM_PATH="$PACKAGEPATH/lib/ruby/gems/1.9.1:$GEM_HOME"
 RUBY_HOME="$STACK_PATH/ruby"
 RUBYLIB="$PACKAGEPATH/lib/ruby/site_ruby/1.9.1:$PACKAGEPATH/lib/ruby/site_ruby/1.9.1/x86_64-linux:$PACKAGEPATH/lib/ruby/site_ruby/:$PACKAGEPATH/lib/ruby/vendor_ruby/1.9.1:$PACKAGEPATH/lib/ruby/vendor_ruby/1.9.1/x86_64-linux:$PACKAGEPATH/lib/ruby/vendor_ruby/:$PACKAGEPATH/lib/ruby/1.9.1:$PACKAGEPATH/lib/ruby/1.9.1/x86_64-linux:$PACKAGEPATH/lib/ruby/:$PACKAGEPATH/lib"
 RUBYOPT=rubygems
@@ -15,3 +16,10 @@ export RUBY_HOME
 export RUBYLIB
 export RUBYOPT
 #export BUNDLE_CONFIG
+
+if [ ! -d "$GEM_HOME" ]; then
+  mkdir -p "$GEM_HOME"
+fi
+
+# expose gems bin directory to PATH
+export PATH="$GEM_HOME/bin:$PATH"

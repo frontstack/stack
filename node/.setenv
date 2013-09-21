@@ -1,11 +1,23 @@
 #!/bin/bash
 
 PACKAGEPATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+modulesbin=$( cd "$(dirname $PACKAGEPATH)/packages/node/bin" && pwd )
+prefix=$( cd "$(dirname $PACKAGEPATH)/packages/node/lib/node_modules" && pwd )
 
 #### NODE.JS ####
 LD_LIBRARY_PATH="$PACKAGEPATH/node/lib:$LD_LIBRARY_PATH"
-NODE_PATH="$PACKAGEPATH/node:$PACKAGEPATH/lib/node_modules"
+NODE_PATH="$PACKAGEPATH:$PACKAGEPATH/lib/node_modules:$prefix"
 NODE_ENV=development
+MANPATH="$PACKAGEPATH/share/man:$MANPATH"
+PATH="$modulesbin:$PATH"
 export NODE_ENV
 export NODE_PATH
 export LD_LIBRARY_PATH
+export PATH
+
+#### node packages config ####
+if [ ! -d $prefix ]; then
+  mkdir -p $prefix
+fi
+
+$PACKAGEPATH/bin/npm set prefix "$prefix"

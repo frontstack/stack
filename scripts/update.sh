@@ -1,6 +1,7 @@
 #!/bin/bash
 #
 # FrontStack environment update script
+# @license WTFPL
 # 
 
 root="$( cd "$( dirname "$0" )/.." && pwd )"
@@ -120,23 +121,23 @@ make_dir /tmp/frontstack
 tar xvfz $download_dir/frontstack-latest.$fs_format -C /tmp/frontstack > $output 2>&1
 check_exit "Error while extracting files. Be sure you have write permissions. See $output"
 
+cd $root
 echo 
 read -p 'Do you want to backup the current FrontStack version? [y/N]: ' res
 if [ $res == 'y' ] || [ $res == 'Y' ]; then
   backup_file=/tmp/frontstack-$version-backup-`date +%Y%m%d"-"%H%M%S`.tar.gz
-  current=pwd
-  cd $root
   echo 
   echo "Backing up to $backup_file"
   tar cvzf $backup_file * > $output 2>&1
   check_exit "Error while backing up FrontStack. See $output"
-  cd $current
 fi
 
+echo 
 echo 'Cleaning old version...'
-rm -rf $root/*
+rm -rf `ls $root | grep -v 'packages$'`
 check_exit "Cannot remove the old version in $root. Check directories permissions or do it manually"
 
+echo 
 echo 'Installing new version...'
 mv -f /tmp/frontstack/* "$root"
 check_exit "Cannot copy files from '/tmp/frontstack' to '$root'. Do it manually"
