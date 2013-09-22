@@ -12,4 +12,4 @@ echo "Welcome to FrontStack $version"
 
 export PS1="\e[00;36m\u@frontstack-$version:\W \e[00m\$ "
 
-exec /bin/bash --noprofile
+exec /bin/bash --noprofile --norc
