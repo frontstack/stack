@@ -4,7 +4,6 @@ PACKAGEPATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 #### RUBY ENV ####
 GEM_HOME=$(echo $( cd "$(dirname $PACKAGEPATH)" && pwd )'/packages/ruby/gems/1.9.1' )
-#$(echo "$( cd "$( dirname "$PACKAGEPATH" )/../" && pwd )/packages/ruby/gems/1.9.1") #"$PACKAGEPATH/../packages/ruby/gems/1.9.1"
 GEM_PATH="$PACKAGEPATH/lib/ruby/gems/1.9.1:$GEM_HOME"
 RUBY_HOME="$STACK_PATH/ruby"
 RUBYLIB="$PACKAGEPATH/lib/ruby/site_ruby/1.9.1:$PACKAGEPATH/lib/ruby/site_ruby/1.9.1/x86_64-linux:$PACKAGEPATH/lib/ruby/site_ruby/:$PACKAGEPATH/lib/ruby/vendor_ruby/1.9.1:$PACKAGEPATH/lib/ruby/vendor_ruby/1.9.1/x86_64-linux:$PACKAGEPATH/lib/ruby/vendor_ruby/:$PACKAGEPATH/lib/ruby/1.9.1:$PACKAGEPATH/lib/ruby/1.9.1/x86_64-linux:$PACKAGEPATH/lib/ruby/:$PACKAGEPATH/lib"
