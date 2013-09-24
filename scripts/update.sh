@@ -114,8 +114,8 @@ fi
 
 echo 
 echo 'IMPORTANT: '
-echo 'Before continuing, be sure you kill all the FrontStack running processes...'
-read -p 'Press enter to continue... ' 
+echo 'Before continue, be sure you kill all the FrontStack running processes...'
+read -p 'Yes, I done, continue with the update... ' 
 
 echo
 `wget -F "$download_url/$(get_download_file $lastest_version_file)/download" -O $download_dir/frontstack-latest.tar.gz > $output 2>&1 && echo $? > $download_status || echo $? > $download_status` &
