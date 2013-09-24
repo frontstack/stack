@@ -10,22 +10,21 @@ check_url='https://raw.github.com/frontstack/stack/master/VERSION'
 output='/tmp/frontstack.log'
 download_dir='/tmp'
 version_file="$root/VERSION"
+download_status='/tmp/frontstack-download'
+lastest_version_file='/tmp/frontstacl-latest'
 
 clean_files() {
   rm -rf $output
+  rm -rf $lastest_version_file
   rm -rf $download_dir/frontstack-latest.tar.gz
+  rm -rf $download_status
 }
 
 check_exit() {
   if [ $? -ne 0 ]; then
+    clean_files
     echo $1
     exit 1
-  fi
-}
-
-make_dir() {
-  if [ ! -d $1 ]; then
-    mkdir $1
   fi
 }
 
@@ -72,6 +71,8 @@ download_status() {
   fi
 }
 
+clean_files
+
 wget http://yahoo.com -O /tmp/test.log > $output 2>&1
 check_exit "No Internet HTTP connectivity. Check if you are behind a proxy. See /tmp/test.log"
 rm -f /tmp/test.log
@@ -85,7 +86,7 @@ if [ $version == '0' ]; then
   fi
 fi
 
-wget $check_url -O /tmp/frontstack-latest >> $output 2>&1
+wget $check_url -O $lastest_version_file >> $output 2>&1
 check_exit "Cannot check the latest version. See $output"
 latest_version=`get_version /tmp/frontstack-latest`
 [ $latest_version == '0' ] && echo "Latest version file don't exists. Check the Internet connectivity" && exit 1
@@ -100,6 +101,7 @@ echo "* Latest: $latest_version"
 # show version release notes
 tail -n+'2' "/tmp/frontstack-latest"
 
+echo 
 echo 
 read -p "Do you want to upgrade to $latest_version? [y/N]: " res
 if [ $res != 'y' ] && [ $res != 'Y' ]; then
@@ -116,39 +118,34 @@ echo 'Before continuing, be sure you kill all the FrontStack running processes..
 read -p 'Press enter to continue... ' 
 
 echo
-`wget -F "$download_url/$(get_download_file /tmp/frontstack-latest)/download" -O /tmp/frontstack-latest.tar.gz > $output 2>&1 && echo $? > /tmp/frontstack-download || echo $? > /tmp/frontstack-download` &
-download_status $output /tmp/frontstack-download
+`wget -F "$download_url/$(get_download_file $lastest_version_file)/download" -O $download_dir/frontstack-latest.tar.gz > $output 2>&1 && echo $? > $download_status || echo $? > $download_status` &
+download_status $output $download_status
 check_exit "Error while trying to download FrontStack. See $output"
 
-echo 
-echo 'Extracting...'
-[ -d /tmp/fronstack ] && rm -rf /tmp/frontstack
-make_dir /tmp/frontstack
-tar xvfz $download_dir/frontstack-latest.tar.gz -C /tmp/frontstack > $output 2>&1
-check_exit "Error while extracting files. Be sure you have write permissions. See $output"
-
 cd $root
+echo 
 echo 
 read -p 'Do you want to backup the current FrontStack version? [y/N]: ' res
 if [ $res == 'y' ] || [ $res == 'Y' ]; then
   backup_file=/tmp/frontstack-$version-backup-`date +%Y%m%d"-"%H%M%S`.tar.gz
   echo 
-  echo "Backing up to $backup_file"
+  echo "Backing up to '$backup_file'"
   tar cvzf $backup_file * > $output 2>&1
   check_exit "Error while backing up FrontStack. See $output"
 fi
 
 echo 
 echo 'Cleaning old version...'
-rm -rf `ls $root | grep -v 'packages$'`
+#rm -rf `ls $root | grep -v 'packages$'`
 check_exit "Cannot remove the old version in $root. Check directories permissions or do it manually"
 
 echo 
 echo 'Installing new version...'
-mv -f /tmp/frontstack/* "$root"
-check_exit "Cannot copy files from '/tmp/frontstack' to '$root'. Do it manually"
-rm -rf /tmp/frontstack
+echo "tar xvfz $download_dir/frontstack-latest.tar.gz -C $root"
+tar xvfz $download_dir/frontstack-latest.tar.gz -C $root > $output 2>&1
+check_exit "Error while extracting files. Be sure you have write permissions. See $output"
+
+clean_files
 
 echo 
 echo "FrontStack $latest_version installed successfully!"
-
