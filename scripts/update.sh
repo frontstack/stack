@@ -136,7 +136,7 @@ fi
 
 echo 
 echo 'Cleaning old version...'
-#rm -rf `ls $root | grep -v 'packages$'`
+rm -rf `ls $root | grep -v 'packages$'`
 check_exit "Cannot remove the old version in $root. Check directories permissions or do it manually"
 
 echo 
