@@ -4,3 +4,4 @@ Release notes:
 
 - Fixes environment absolute path error in bash.sh
 - Fixes load environment variables on new bash session in setup.sh
+- Fixed error in update.sh

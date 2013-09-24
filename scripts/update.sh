@@ -7,8 +7,14 @@
 root="$( cd "$( dirname "$0" )/.." && pwd )"
 download_url='http://sourceforge.net/projects/frontstack/files/releases'
 check_url='https://raw.github.com/frontstack/stack/master/VERSION'
-output="/tmp/frontstack.log"
+output='/tmp/frontstack.log'
+download_dir='/tmp'
 version_file="$root/VERSION"
+
+clean_files() {
+  rm -rf $output
+  rm -rf $download_dir/frontstack-latest.tar.gz
+}
 
 check_exit() {
   if [ $? -ne 0 ]; then
@@ -118,7 +124,7 @@ echo
 echo 'Extracting...'
 [ -d /tmp/fronstack ] && rm -rf /tmp/frontstack
 make_dir /tmp/frontstack
-tar xvfz $download_dir/frontstack-latest.$fs_format -C /tmp/frontstack > $output 2>&1
+tar xvfz $download_dir/frontstack-latest.tar.gz -C /tmp/frontstack > $output 2>&1
 check_exit "Error while extracting files. Be sure you have write permissions. See $output"
 
 cd $root
