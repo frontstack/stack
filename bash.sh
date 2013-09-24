@@ -3,7 +3,7 @@
 # Creates a new bash session with the FrontStack environment variables
 #
 
-env_path=$(cd "$( dirname "$0")" && pwd)
+env_path=$(cd "$( dirname "${BASH_SOURCE[0]}")" && pwd)
 version=$(head -1 "$env_path/VERSION" | awk '{print $1}')
 
 echo "Welcome to FrontStack $version"

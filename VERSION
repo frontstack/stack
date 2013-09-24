@@ -1,5 +1,6 @@
-0.1.0 0.1/frontstack-0.1.0-x64.tar.gz
+0.1.1 0.1/frontstack-0.1.1-x64.tar.gz
 
 Release notes:
 
-- First beta public release
+- Fixes environment absolute path error in bash.sh
+- Fixes load environment variables on new bash session in setup.sh
