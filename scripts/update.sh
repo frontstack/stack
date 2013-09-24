@@ -126,12 +126,14 @@ cd $root
 echo 
 echo 
 read -p 'Do you want to backup the current FrontStack version? [y/N]: ' res
-if [ $res == 'y' ] || [ $res == 'Y' ]; then
-  backup_file=/tmp/frontstack-$version-backup-`date +%Y%m%d"-"%H%M%S`.tar.gz
-  echo 
-  echo "Backing up to '$backup_file'"
-  tar cvzf $backup_file * > $output 2>&1
-  check_exit "Error while backing up FrontStack. See $output"
+if [ ! -z $res ]; then
+  if [ $res == 'y' ] || [ $res == 'Y' ]; then
+    backup_file=/tmp/frontstack-$version-backup-`date +%Y%m%d"-"%H%M%S`.tar.gz
+    echo 
+    echo "Backing up to '$backup_file'"
+    tar cvzf $backup_file * > $output 2>&1
+    check_exit "Error while backing up FrontStack. See $output"
+  fi
 fi
 
 echo 
