@@ -43,8 +43,8 @@ if [ `exists wget` -eq 1 ]; then
       cat <<EOF
 
 New FrontStack version available:
-* Local: $version"
-* Latest: $latest_version"
+* Local: $version
+* Latest: $latest_version
 
 To upgrade your environment, simply run:
 $ $env_path/scripts/update.sh
