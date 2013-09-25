@@ -34,7 +34,7 @@ get_version() {
 
 echo "Welcome to FrontStack $version"
 
-if [ `exists wget` -eq 1 ]; then 
+if [ `exists wget` -eq 1 ]; then
   wget $version_check_url -O $version_file > $output 2>&1
   if [ $? -eq 0 ]; then
     latest_version=`get_version $version_file` 
@@ -42,11 +42,11 @@ if [ `exists wget` -eq 1 ]; then
       
       cat <<EOF
 
-New FrontStack version available:'
+New FrontStack version available:
 * Local: $version"
 * Latest: $latest_version"
 
-To update your environment, simply run:
+To upgrade your environment, simply run:
 $ $env_path/scripts/update.sh
 
 EOF
