@@ -9,7 +9,7 @@
   * Ruby 1.9.3-p448
     * RubyGems 2.1.4
     * Compass 0.12.2
-    * Sass 3.1.20
+    * Sass 3.2.10
     * eventmachine 1.0.1
     * Rake 0,9.2.2
   * Python 2.7.5
