@@ -2,11 +2,11 @@
 
 PACKAGEPATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 modulesbin=$(echo $( cd "$(dirname $PACKAGEPATH)" && pwd )'/packages/node/bin' )
-prefix=$(echo $( cd "$(dirname $PACKAGEPATH)" && pwd )'/packages/node/lib/node_modules' )
+prefix=$(echo $( cd "$(dirname $PACKAGEPATH)" && pwd )'/packages/node' )
 
 #### NODE.JS ####
 LD_LIBRARY_PATH="$PACKAGEPATH/node/lib:$LD_LIBRARY_PATH"
-NODE_PATH="$PACKAGEPATH:$PACKAGEPATH/lib/node_modules:$prefix"
+NODE_PATH="$PACKAGEPATH:$PACKAGEPATH/lib/node_modules:$prefix/lib/node_modules"
 NODE_ENV=development
 MANPATH="$PACKAGEPATH/share/man:$MANPATH"
 PATH="$modulesbin:$PATH"

@@ -9,6 +9,8 @@ PATH="$PACKAGEPATH/phantomjs/bin:$PATH"
 
 SLIMERJSLAUNCHER="$PACKAGEPATH/slimerjs/slimerjs"
 export SLIMERJSLAUNCHER
+SLIMERJS_BIN="$PACKAGEPATH/slimerjs/slimerjs"
+export SLIMERJS_BIN
 PATH="$PACKAGEPATH/slimerjs:$PATH"
 
 export PATH
