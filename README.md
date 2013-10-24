@@ -29,18 +29,16 @@ See `PACKAGES.md` file
 
 ## Where are the binaries?
 
-If you are reading this from Github, you worth to know that FrontStack binaries are not being versioned by a SCM([read this](http://blog.bintray.com/2013/05/30/google-and-github-insist-go-store-your-binaries-in-a-proper-place/?shareadraft=51a74b1186613)).
+If you are reading this from Github, you worth to know that FrontStack binaries are not being versioned by a SCM ([read this](http://blog.bintray.com/2013/05/30/google-and-github-insist-go-store-your-binaries-in-a-proper-place/?shareadraft=51a74b1186613)).
 
 All the binaries are hosted in SourceForge, so you can download any public release from [here](https://sourceforge.net/projects/frontstack/files/releases/).
 
 ## TODO
 
-- Add documentation and FAQ
+- Add detailed documentation and FAQ
 - Fix browsers fontconfig lib issue
 - Improve Python support
 - Add cURL support
-- Add Git (and Perl) support?
-- Python package manager
 - Add test scripts (test dynamic dependecies, binaries exit codes...)
 
 ## Issues
