@@ -11,7 +11,7 @@ output='/tmp/frontstack.log'
 download_dir='/tmp'
 version_file="$root/VERSION"
 download_status='/tmp/frontstack-download'
-lastest_version_file='/tmp/frontstacl-latest'
+lastest_version_file='/tmp/frontstack-latest'
 
 clean_files() {
   rm -rf $output
@@ -88,7 +88,7 @@ fi
 
 wget $check_url -O $lastest_version_file >> $output 2>&1
 check_exit "Cannot check the latest version. See $output"
-latest_version=`get_version /tmp/frontstack-latest`
+latest_version=`get_version $lastest_version_file`
 [ $latest_version == '0' ] && echo "Latest version file don't exists. Check the Internet connectivity" && exit 1
 
 if [ $latest_version == $version ]; then
