@@ -52,3 +52,7 @@ Feel free to report any issue you experiment or improvements via [Github][https:
 ## License
 
 Bash scripts are releases under the [WTFPL](http://www.wtfpl.net/txt/copying/)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/frontstack/stack/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
