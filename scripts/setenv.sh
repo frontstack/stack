@@ -4,10 +4,10 @@ if [ -z "$FRONTSTACK" ]; then
 
   export FRONTSTACK="$( cd "$( dirname "${BASH_SOURCE[0]}" )/.." && pwd )"
 
-  if [ ! -d "${env_path}/packages" ]; then
-    mkdir "${env_path}/packages"
-    mkdir "${env_path}/packages/ruby"
-    chmod -R 775 "${env_path}/packages/" > /dev/null
+  if [ ! -d "$FRONTSTACK/packages" ]; then
+    mkdir "$FRONTSTACK/packages"
+    mkdir "$FRONTSTACK/packages/ruby"
+    chmod -R 775 "$FRONTSTACK/packages/" > /dev/null
   fi
 
   #
