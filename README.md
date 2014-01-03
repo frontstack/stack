@@ -1,6 +1,6 @@
 # FrontStack
 
-Self-contained, portable and ready-to-run GNU/Linux x64 software stack for modern node.js based Web development
+Self-contained, portable and ready-to-run GNU/Linux x64 software stack for modern node-based Web development
 
 ## Usage
 
