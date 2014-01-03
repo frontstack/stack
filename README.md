@@ -1,6 +1,6 @@
 # FrontStack
 
-Self-contained, portable and ready-to-run GNU/Linux x64 software stack for modern node-based Web development
+Self-contained, portable and ready-to-run GNU/Linux software stack for modern node-based Web development
 
 ## Usage
 
@@ -25,9 +25,16 @@ And what happens if I do an environment upgrade?
 
 All the Node packages or Ruby gems you install will be installed in the `packages/` directory and it will be ignored by the update process, so all the installed packages will remain between updates.
 
+## Requirements
+
+- GNU/Linux 64 bit
+- 512MB RAM (>=768MB recommended)
+- 2GB HDD
+- Internet access (HTTP/S)
+
 ## Packages
 
-See `PACKAGES.md` file
+See the [PACKAGES](https://github.com/frontstack/stack/blob/master/PACKAGES.md) file
 
 ## Where are the binaries?
 
@@ -43,7 +50,7 @@ All the binaries are hosted in SourceForge, so you can download any public Front
 
 ## Issues
 
-Feel free to report any issue you experiment or improvements via [Github][https://github.com/frontstack/stack/issues]
+Feel free to report any issue you experiment or improvements via [Github](https://github.com/frontstack/stack/issues)
 
 ## Authors
 
@@ -55,4 +62,3 @@ Bash scripts are releases under the [WTFPL](http://www.wtfpl.net/txt/copying/)
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/frontstack/stack/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
