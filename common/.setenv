@@ -14,5 +14,8 @@ if [ -d "$PACKAGEPATH/ssl/" ]; then
   export DYLD_LIBRARY_PATH
 fi
 
+# fontconfig
+export FONTCONFIG_PATH="$PACKAGEPATH/etc/fonts"
+
 export LD_LIBRARY_PATH
 export C_INCLUDE_PATH

@@ -1,12 +1,18 @@
 #!/bin/bash
 #
-# Creates a new bash session with the FrontStack environment variables
+# Creates a new Bash session with the FrontStack environment variables
+#
+# For continous integration and deployment servers usage
+# you can load the isolated FrontStack environment:
+# ./scripts/setenv.sh
 #
 
-env_path=$(cd "$( dirname "${BASH_SOURCE[0]}")" && pwd)
-version=$(head -1 "$env_path/VERSION" | awk '{print $1}')
+# update config (customize it if you need)
 version_check_url='https://raw.github.com/frontstack/stack/master/VERSION'
 version_file='/tmp/frontstack-version'
+# path variables
+env_path=$(cd "$( dirname "${BASH_SOURCE[0]}")" && pwd)
+version=$(head -1 "$env_path/VERSION" | awk '{print $1}')
 output='/tmp/frontstack.log'
 
 exists() {
@@ -35,19 +41,19 @@ get_version() {
 echo "Welcome to FrontStack $version"
 
 if [ `exists wget` -eq 1 ]; then
-  wget $version_check_url -O $version_file > $output 2>&1
+  wget --timeout=2 $version_check_url -O $version_file > $output 2>&1
   if [ $? -eq 0 ]; then
     latest_version=`get_version $version_file` 
     if [ $latest_version != $version ]; then
       
       cat <<EOF
 
-New FrontStack version available:
+New version available:
 * Local: $version
 * Latest: $latest_version
 
-To upgrade your environment, simply run:
-$ $env_path/scripts/update.sh
+To upgrade your environment, you should run:
+$ sudo $env_path/scripts/update.sh
 
 EOF
 
@@ -58,6 +64,6 @@ fi
 
 . "${env_path}/scripts/setenv.sh"
 
-export PS1="\e[00;36m\u@frontstack-$version:\W \e[00m\$ "
+export PS1="\e[00;36m\u@fs-$version:\W \e[00m\$ "
 
 exec /bin/bash --noprofile --norc

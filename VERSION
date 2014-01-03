@@ -1,14 +1,17 @@
-0.2.0 0.2/frontstack-0.2.0-x64.tar.gz
+0.3.0 0.3/frontstack-0.3.0-x64.tar.gz
 
-Release notes: version 0.2.0
+Release notes: version 0.3.0 (03.01.2014)
 
-- Upgrade Node to 0.10.21
-- Upgrade PhantomJS to 1.9.2
-- Upgrade SlimerJS to 0.8.4
-- Upgrade NPM to 1.3.11
-- Upgrade Bower to 1.2.7
-- Upgrade Sass gem to 3.2.12
-- Upgrade Yo to 1.0.4
-- Fixes Node global packages installation path and binaries environment variable
-- Added coffee-script 
-- Fixed gem path to ruby binary
+- Autodiscover binaries and environment variables for third-party installed packages
+- Minor bash script improvements
+- Upgrade Node.js to 0.10.24
+- Upgrade SlimerJS to 0.9.0
+- Upgrade CasperJS to 1.1-beta3
+- Upgrade Grunt CLI to 0.1.11
+- Upgrade Bower to 1.2.8
+- Upgrade Yo to 1.0.7
+- Upgrade Node-gyp to 0.12.2
+- Add Croak node.js package
+- Add cURL 7.27.0
+- Add generic shared libraries
+- Fix: #3, #4, #5, #6, #7
