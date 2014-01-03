@@ -13,7 +13,7 @@ Self-contained, portable and ready-to-run GNU/Linux software stack for modern no
 You can easily upgrade the whole FrontStack environment simply running the following script:
 
 ```shell
-$  scripts/update.sh
+$ scripts/update.sh
 ```
 
 This process will autodiscover new FrontStack versions and it will do all the upgrade process for you
