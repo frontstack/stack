@@ -45,7 +45,7 @@ All the Node packages or Ruby gems you install will be installed in the `package
 
   $ fronstack update
   $ fronstack where ruby
-
+```
 
 ## Requirements
 
