@@ -10,6 +10,10 @@ if [ -z "$FRONTSTACK" ]; then
     chmod -R 775 "$FRONTSTACK/packages/" > /dev/null
   fi
 
+  [ ! -x "${FRONTSTACK}/scripts/bin/frontstack" ] && chmod +x "${FRONTSTACK}/scripts/bin/frontstack"
+  [ ! -x "${FRONTSTACK}/scripts/setenv.sh" ] && chmod +x "${FRONTSTACK}/scripts/setenv.sh"
+  [ ! -x "${FRONTSTACK}/scripts/update.sh" ] && chmod +x "${FRONTSTACK}/scripts/update.sh"
+
   #
   # Autodiscover packages for setting environment variables
   #

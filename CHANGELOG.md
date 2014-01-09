@@ -1,5 +1,10 @@
 # FrontStack ChangeLog
 
+`0.3.1` 09.01.2013
+
+  - Add FrontStack CLI support
+  - Bash scripts minor improvements
+
 `0.3.0` 03.01.2014
 
   - Autodiscover binaries and environment variables for third-party installed packages

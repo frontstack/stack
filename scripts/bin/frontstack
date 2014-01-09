@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #
-# A simple CLI for FrontStack 
+# A simple CLI for FrontStack management
 # @license WTFPL
 #
 
 cmd=$1
 package=$2
-fs_basepath=$(cd "$( dirname "${BASH_SOURCE[0]}")/../" && pwd)
+fs_basepath=$(cd "$( dirname "${BASH_SOURCE[0]}")/../../" && pwd)
 
 show_help() {
   cat <<EOF
@@ -65,19 +65,16 @@ version() {
 . "${fs_basepath}/scripts/setenv.sh"
 
 case $cmd in
-  update)
+  update|u|upgrade)
     update
     ;;
-  version)
+  version|v|--version|-v|-V)
     version
     ;;
-  where)
+  where|which|w|location|path)
     where
     ;;
-  which)
-    where
-    ;;
-  help)
+  help|h|--help|-h)
     show_help
     ;;
   *)

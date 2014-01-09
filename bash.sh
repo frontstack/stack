@@ -7,7 +7,6 @@
 # ./scripts/setenv.sh
 #
 
-# update config (customize it if you need)
 version_check_url='https://raw.github.com/frontstack/stack/master/VERSION'
 version_file='/tmp/frontstack-version'
 env_path=$(cd "$( dirname "${BASH_SOURCE[0]}")" && pwd)
@@ -29,9 +28,17 @@ clean_files() {
   rm -rf $version_file
 }
 
+get_version() {
+  if [ ! -f "$1" ]; then
+    echo 0
+  else
+    head -1 "$1" | awk '{print $1}'
+  fi
+}
+
 create_alias() {
   if [ `exists alias` -eq 1 ]; then
-    alias frontstack="/usr/bin/env bash ${env_path}/scripts/frontstack.sh"
+    alias "frontstack=/bin/bash"
   fi
 }
 
@@ -39,7 +46,7 @@ check_new_versions() {
   if [ `exists wget` -eq 1 ]; then
     wget --no-check-certificate --timeout=2 $version_check_url -O $version_file > $output 2>&1
     if [ $? -eq 0 ]; then
-      latest_version=`get_version $version_file` 
+      latest_version=`get_version $version_file`
       if [ $latest_version != $version ]; then
         
       cat <<EOF
