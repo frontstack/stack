@@ -25,6 +25,28 @@ And what happens if I do an environment upgrade?
 
 All the Node packages or Ruby gems you install will be installed in the `packages/` directory and it will be ignored by the update process, so all the installed packages will remain between updates.
 
+## FrontStack CLI
+
+```
+  FrontStack CLI commands:
+
+  update
+    Update FrontStack if new versions are available
+  version  
+    Show the current FrontStack version
+  where [package]
+    Show path where a given packages is located
+  info
+    Show FrontStack project useful links
+  help
+    Show this info
+
+  Examples:
+
+  $ fronstack update
+  $ fronstack where ruby
+
+
 ## Requirements
 
 - GNU/Linux 64 bit
