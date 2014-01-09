@@ -68,6 +68,7 @@ All the binaries are hosted in SourceForge, so you can download any public Front
 
 - Add detailed documentation and FAQ
 - Improve Python support
+- Add Go support
 - Add test scripts (test dynamic dependecies, binaries exit codes...)
 
 ## Issues
