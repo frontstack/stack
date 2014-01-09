@@ -1,7 +1,9 @@
 0.3.1 0.3/frontstack-0.3.1-x64.tar.gz
 
-Release notes: version 0.3.0 (03.01.2014)
+Release notes: version 0.3.1 (09.01.2014)
 
+- Add FrontStack CLI support
+- Bash scripts minor improvements
 - Autodiscover binaries and environment variables for third-party installed packages
 - Node and Ruby packages provisioning configuration from setup.ini
 - Minor bash script improvements
