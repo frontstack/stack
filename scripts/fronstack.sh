@@ -26,7 +26,7 @@ show_help() {
 
   Examples:
 
-  $ frontstack <command>
+  $ frontstack update
   $ fronstack where ruby
 
 EOF

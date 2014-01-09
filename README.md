@@ -4,7 +4,7 @@ Self-contained, portable and ready-to-run GNU/Linux software stack for modern no
 
 ## Usage
 
-1. Run `bash.sh` to create a new bash session with specific environment variables
+1. Run `bash.sh` to create a new bash session with the isolated environment variables
 
 2. Create your workspace directory and start coding!
 
@@ -13,7 +13,7 @@ Self-contained, portable and ready-to-run GNU/Linux software stack for modern no
 You can easily upgrade the whole FrontStack environment simply running the following script:
 
 ```shell
-$ scripts/update.sh
+$ frontstack update
 ```
 
 This process will autodiscover new FrontStack versions and it will do all the upgrade process for you
