@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # FrontStack environment update script
 # @license WTFPL

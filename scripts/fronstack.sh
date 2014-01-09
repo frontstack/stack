@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+#
+# A simple CLI for FrontStack 
+# @license WTFPL
+#
+
+cmd=$1
+package=$2
+fs_basepath=$(cd "$( dirname "${BASH_SOURCE[0]}")/../" && pwd)
+
+show_help() {
+  cat <<EOF
+
+  FrontStack CLI commands:
+
+  update
+    Update FrontStack if new versions are available
+  version  
+    Show the current FrontStack version
+  where [package]
+    Show path where a given packages is located
+  info
+    Show FrontStack project useful links
+  help
+    Show this info
+
+  Examples:
+
+  $ frontstack <command>
+  $ fronstack where ruby
+
+EOF
+}
+
+where() {
+  if [ -z $package ]; then
+    echo "Installation path: ${fs_basepath}"
+  else
+    echo "$package path: `which $package`"
+  fi
+}
+
+info() {
+  cat <<EOF
+
+Code: https://github.com/frontstack
+Downloads: http://sourceforge.net/projects/frontstack
+Issues: https://github.com/frontstack/stack/issues
+Proposals: https://github.com/frontstack/fronstack/issues
+License: WTFPL and MIT
+
+EOF
+
+}
+
+update() {
+  . "${fs_basepath}/scripts/update.sh"
+}
+
+version() {
+  local version=$(head -1 "$fs_basepath/VERSION" | awk '{print $1}')
+  echo $version
+}
+
+. "${fs_basepath}/scripts/setenv.sh"
+
+case $cmd in
+  update)
+    update
+    ;;
+  version)
+    version
+    ;;
+  where)
+    where
+    ;;
+  which)
+    where
+    ;;
+  help)
+    show_help
+    ;;
+  *)
+    show_help
+    ;;
+esac

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Creates a new Bash session with the FrontStack environment variables
 #
@@ -10,7 +10,6 @@
 # update config (customize it if you need)
 version_check_url='https://raw.github.com/frontstack/stack/master/VERSION'
 version_file='/tmp/frontstack-version'
-# path variables
 env_path=$(cd "$( dirname "${BASH_SOURCE[0]}")" && pwd)
 version=$(head -1 "$env_path/VERSION" | awk '{print $1}')
 output='/tmp/frontstack.log'
@@ -30,22 +29,19 @@ clean_files() {
   rm -rf $version_file
 }
 
-get_version() {
-  if [ ! -f "$1" ]; then
-    echo 0
-  else
-    head -1 "$1" | awk '{print $1}'
+create_alias() {
+  if [ `exists alias` -eq 1 ]; then
+    alias frontstack="/usr/bin/env bash ${env_path}/scripts/frontstack.sh"
   fi
 }
 
-echo "Welcome to FrontStack $version"
-
-if [ `exists wget` -eq 1 ]; then
-  wget --timeout=2 $version_check_url -O $version_file > $output 2>&1
-  if [ $? -eq 0 ]; then
-    latest_version=`get_version $version_file` 
-    if [ $latest_version != $version ]; then
-      
+check_new_versions() {
+  if [ `exists wget` -eq 1 ]; then
+    wget --no-check-certificate --timeout=2 $version_check_url -O $version_file > $output 2>&1
+    if [ $? -eq 0 ]; then
+      latest_version=`get_version $version_file` 
+      if [ $latest_version != $version ]; then
+        
       cat <<EOF
 
 New version available:
@@ -53,14 +49,20 @@ New version available:
 * Latest: $latest_version
 
 To upgrade your environment, you should run:
-$ sudo $env_path/scripts/update.sh
+$ sudo frontstack update
 
 EOF
 
+      fi
     fi
+    clean_files
   fi
-  clean_files
-fi
+}
+
+echo "Welcome to FrontStack $version"
+
+check_new_versions
+create_alias
 
 . "${env_path}/scripts/setenv.sh"
 
