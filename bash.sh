@@ -43,7 +43,7 @@ create_alias() {
 }
 
 check_new_versions() {
-  if [ `exists wget` -eq 1 ]; then
+  if [ ! -f "${env_path}/update.lock" ] && [ `exists wget` -eq 1 ]; then
     wget --no-check-certificate --timeout=2 $version_check_url -O $version_file > $output 2>&1
     if [ $? -eq 0 ]; then
       latest_version=`get_version $version_file`
