@@ -15,6 +15,10 @@ show_help() {
 
   update
     Update FrontStack if new versions are available
+  update-lock
+    Disable enviroment update
+  update-unlock
+    Enable enviroment updates
   version  
     Show the current FrontStack version
   where [package]
@@ -53,7 +57,20 @@ EOF
 
 }
 
+update_lock() {
+  if [ ! -f "${fs_basepath}/update.lock" ]; then
+    touch "${fs_basepath}/update.lock"
+  fi
+}
+
+update_unlock() {
+  if [ -f "${fs_basepath}/update.lock" ]; then
+    rm -f "${fs_basepath}/update.lock"
+  fi
+}
+
 update() {
+  [ ! -x "${fs_basepath}/scripts/update.sh" ] && chmod +x "${fs_basepath}/scripts/update.sh"
   . "${fs_basepath}/scripts/update.sh"
 }
 
@@ -67,6 +84,12 @@ version() {
 case $cmd in
   update|u|upgrade)
     update
+    ;;
+  update-lock|update-disable)
+    update_lock
+    ;;
+  update-unlock|update-enable)
+    update_unlock
     ;;
   version|v|--version|-v|-V)
     version
