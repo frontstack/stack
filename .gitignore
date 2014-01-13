@@ -1,0 +1,5 @@
+node/node_modules/
+browsers/*.sh
+common/*.sh
+ruby/lib/*.sh
+casperjs/*.sh
