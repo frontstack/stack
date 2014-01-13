@@ -1,5 +1,10 @@
 # FrontStack ChangeLog
 
+`0.3.2` 13.01.2013
+
+  - Fix #12: cannot find the Ruby binary path
+  - Documentation general improvements
+
 `0.3.1` 09.01.2013
 
   - Add FrontStack CLI support

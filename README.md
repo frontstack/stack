@@ -51,7 +51,7 @@ All the Node packages or Ruby gems you install will be installed in the `package
 
 - GNU/Linux 64 bit
 - 512MB RAM (>=768MB recommended)
-- 2GB HDD
+- 1GB HDD
 - Internet access (HTTP/S)
 
 ## Packages
