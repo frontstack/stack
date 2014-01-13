@@ -28,10 +28,16 @@ All the Node packages or Ruby gems you install will be installed in the `package
 ## FrontStack CLI
 
 ```
+$ frontstack help
+
   FrontStack CLI commands:
 
   update
     Update FrontStack if new versions are available
+  update-lock
+    Disable enviroment update
+  update-unlock
+    Enable enviroment updates
   version  
     Show the current FrontStack version
   where [package]
@@ -43,8 +49,9 @@ All the Node packages or Ruby gems you install will be installed in the `package
 
   Examples:
 
-  $ fronstack update
+  $ frontstack update
   $ fronstack where ruby
+
 ```
 
 ## Requirements
