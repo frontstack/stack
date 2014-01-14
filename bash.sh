@@ -73,6 +73,6 @@ create_alias
 
 . "${env_path}/scripts/setenv.sh"
 
-export PS1="\e[00;36m\u@fs-$version:\W \e[00m\$ "
+export PS1="\e[00;36m\u@frontstack:\W \e[00m\$ "
 
 exec /bin/bash --noprofile --norc

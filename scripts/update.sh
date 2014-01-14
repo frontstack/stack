@@ -4,14 +4,22 @@
 # @license WTFPL
 # 
 
-root="$( cd "$( dirname "$0" )/.." && pwd )"
+cwd=`pwd`
 download_url='http://sourceforge.net/projects/frontstack/files/releases'
 check_url='https://raw.github.com/frontstack/stack/master/VERSION'
-output='/tmp/frontstack.log'
 download_dir='/tmp'
-version_file="$root/VERSION"
-download_status='/tmp/frontstack-download'
-lastest_version_file='/tmp/frontstack-latest'
+output="${download_dir}/frontstack.log"
+download_status="${download_dir}/frontstack-download"
+lastest_version_file="${download_dir}/frontstack-latest"
+
+get_basepath() {
+  local basepath="$( cd "$( dirname "$0" )/../" && pwd )"
+  if [ -f "${basepath}/VERSION" ]; then
+    echo $basepath
+  else
+    echo "$( cd "$( dirname "$0" )/../../" && pwd )"
+  fi
+}
 
 clean_files() {
   rm -rf $output
@@ -31,7 +39,7 @@ check_exit() {
 }
 
 get_version() {
-	if [ ! -f "$1" ]; then
+  if [ ! -f "$1" ]; then
     echo 0
   else
     head -1 "$1" | awk '{print $1}'
@@ -66,7 +74,7 @@ download_status() {
       sleep 1
 
       local speed=$(echo `cat $1 | grep -oh '\([0-9.]\+[%].*[0-9.][s|m|h|d]\)' | tail -1`)
-      echo -n "Downloading... $speed"
+      echo -n ">> Downloading... $speed"
       echo -n R | tr 'R' '\r'
 
       if [ -f $2 ]; then
@@ -89,7 +97,10 @@ download_status() {
 
 clean_files
 
-version=`get_version $version_file` 
+basepath=`get_basepath $0`
+version_file="$basepath/VERSION"
+version=`get_version $version_file`
+
 if [ $version == '0' ]; then 
   echo 'Warning: cannot check the local FrontStack version'
   read -p 'Do you want to proceed anyway? [y/N]: ' res
@@ -98,6 +109,7 @@ if [ $version == '0' ]; then
   fi
 fi
 
+# download the remote manifest file
 wget --no-check-certificate $check_url -O $lastest_version_file >> $output 2>&1
 check_exit "Cannot check the latest version, are you behind a web proxy?" "Remote version manifest: $check_url" "Log file: $output"
 latest_version=`get_version $lastest_version_file`
@@ -120,22 +132,23 @@ if [ $res != 'y' ] && [ $res != 'Y' ]; then
   echo 'Exiting' && exit 0
 fi
 
-if [ ! -w $root ]; then
+if [ ! -w $basepath ]; then
   echo "The current user (`whoami`) does not have write permissions. Required" && exit 1
 fi
 
 echo 
 echo 'IMPORTANT: '
-echo 'Before continue, be sure you kill all the FrontStack running processes...'
-read -p 'Yes, I done, continue with the update... ' 
+echo 'Be sure you stop all the FrontStack running processes...'
+echo
+read -p 'Yes, I done, continue with the update... [press enter] '
 
 echo
 `wget --no-check-certificate -F "$(get_download_file $lastest_version_file)" -O $download_dir/frontstack-latest.tar.gz > $output 2>&1 && echo $? > $download_status || echo $? > $download_status` &
 download_status $output $download_status
 check_exit "Error while trying to download FrontStack. See $output"
 
-cd $root
-echo 
+cd $basepath
+echo
 echo 
 read -p 'Do you want to backup the current FrontStack version? [y/N]: ' res
 if [ ! -z $res ]; then
@@ -147,16 +160,18 @@ if [ ! -z $res ]; then
     check_exit "Error while backing up FrontStack. See $output"
   fi
 fi
+cd $cwd
 
 echo 
 echo 'Cleaning old version...'
-rm -rf `ls $root | grep -v 'packages$'`
-check_exit "Cannot remove the old version in $root. Check directories permissions or do it manually"
+rm -rf `ls $basepath | grep -v 'packages$'`
+check_exit "Cannot remove the old version in $basepath" "Check file permissions and try it again"
 
-echo 
+echo
 echo 'Installing new version...'
-echo "tar xvfz $download_dir/frontstack-latest.tar.gz -C $root"
-tar xvfz $download_dir/frontstack-latest.tar.gz -C $root > $output 2>&1
+[ ! -d $basepath ]; mkdir -p $basepath
+echo "tar xvfz $download_dir/frontstack-latest.tar.gz -C $basepath"
+tar xvfz $download_dir/frontstack-latest.tar.gz -C $basepath > $output 2>&1
 check_exit "Error while extracting files. Be sure you have write permissions. See $output"
 
 clean_files
