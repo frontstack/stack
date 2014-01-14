@@ -95,8 +95,6 @@ download_status() {
   fi
 }
 
-clean_files
-
 basepath=`get_basepath $0`
 version_file="$basepath/VERSION"
 version=`get_version $version_file`
@@ -108,6 +106,8 @@ if [ $version == '0' ]; then
     echo 'Exiting' && exit 0
   fi
 fi
+
+clean_files
 
 # download the remote manifest file
 wget --no-check-certificate $check_url -O $lastest_version_file >> $output 2>&1
@@ -155,7 +155,7 @@ if [ ! -z $res ]; then
   if [ $res == 'y' ] || [ $res == 'Y' ]; then
     backup_file=/tmp/frontstack-$version-backup-`date +%Y%m%d"-"%H%M%S`.tar.gz
     echo 
-    echo "Backing up to '$backup_file'"
+    echo "Creating backup in: '$backup_file'"
     tar cvzf $backup_file * > $output 2>&1
     check_exit "Error while backing up FrontStack. See $output"
   fi

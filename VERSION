@@ -1,8 +1,9 @@
-0.3.2 0.3/frontstack-0.3.1-x64.tar.gz
+0.3.2 0.3/frontstack-0.3.2-x64.tar.gz
 
-Release notes: version 0.3.2 (13.01.2014)
+Release notes: version 0.3.2 (14.01.2014)
 
 - Fix (#12): issue with Ruby binary path
+- Fix (#14): Bad installation path from update.sh
 - Add FrontStack CLI support
 - Bash scripts minor improvements
 - Autodiscover binaries and environment variables for third-party installed packages
