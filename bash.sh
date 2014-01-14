@@ -56,7 +56,7 @@ New version available:
 * Latest: $latest_version
 
 To upgrade your environment, you should run:
-$ sudo frontstack update
+$ frontstack update
 
 EOF
 
