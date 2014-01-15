@@ -133,6 +133,7 @@ if [ $latest_version == $version ]; then
 fi 
 
 echo 'New FrontStack version is available'
+echo
 echo "* Local: $version"
 echo "* Latest: $latest_version"
 # show version release notes
@@ -143,7 +144,7 @@ echo
 if [ $force -eq 0 ]; then
   read -p "Do you want to upgrade to $latest_version? [y/N]: " res
   [ -z $res ]; echo 'Canceled' && exit 0
-  [ $res != 'y' ] && [ $res != 'Y' ] && [ $res != 'yes' ]; echo 'Canceled' && exit 0
+  [ $res != 'y' ] && [ $res != 'Y' ] && [ $res != 'yes' ]; && echo 'Canceled' && exit 0
 fi
 
 if [ ! -w $basepath ]; then
