@@ -186,7 +186,6 @@ echo 'Cleaning old version...'
 rm -rf `ls $basepath | grep -v 'packages$'`
 check_exit "Cannot remove the old version in $basepath" "Check file permissions and try it again"
 
-echo
 echo 'Installing new version...'
 [ ! -d $basepath ]; mkdir -p $basepath
 tar xvfz $download_dir/frontstack-latest.tar.gz -C $basepath > $output 2>&1
