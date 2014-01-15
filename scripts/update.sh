@@ -120,8 +120,8 @@ fi
 
 clean_files
 
-echo 'Checking for new versions...'
-echo
+echo -n 'Checking new versions...'
+echo -n R | tr 'R' '\r' 
 # download the remote manifest file
 wget --no-check-certificate $check_url -O $lastest_version_file >> $output 2>&1
 check_exit "Cannot check the latest version, are you behind a web proxy?" "Remote version manifest: $check_url" "Output log: $output"
@@ -132,6 +132,7 @@ if [ $latest_version == $version ]; then
   echo 'FrontStack is up to date' && exit 0
 fi 
 
+echo
 echo 'New FrontStack version is available'
 echo "* Local: $version"
 echo "* Latest: $latest_version"
