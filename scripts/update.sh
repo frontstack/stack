@@ -157,7 +157,7 @@ echo
 echo 'IMPORTANT: '
 echo 'Be sure you stop all the FrontStack running processes...'
 echo
-read -p 'Yes, I done, continue with the update... [press enter] '
+read -p 'I done, continue with the update... [press enter] '
 
 echo
 `wget --no-check-certificate -F "$(get_download_file $lastest_version_file)" -O $download_dir/frontstack-latest.tar.gz > $output 2>&1 && echo $? > $download_status || echo $? > $download_status` &
