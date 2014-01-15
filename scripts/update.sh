@@ -31,10 +31,11 @@ clean_files() {
 check_exit() {
   if [ $? -ne 0 ]; then
     clean_files
-    for msg in $*; do 
-     echo $msg 
-   done
-   exit 1
+    while [ -n "$1" ]; do
+       echo $ARGS "$1"
+       shift
+    done
+    exit 1
   fi
 }
 
