@@ -132,7 +132,7 @@ if [ $latest_version == $version ]; then
   echo 'FrontStack is up to date' && exit 0
 fi 
 
-echo 'New FrontStack version is available'
+echo 'New FrontStack version is available:'
 echo
 echo "* Local: $version"
 echo "* Latest: $latest_version"
