@@ -1,7 +1,9 @@
-0.3.2 0.3/frontstack-0.3.2-x64.tar.gz
+0.3.3 0.3/frontstack-0.3.3-x64.tar.gz
 
-Release notes: version 0.3.2 (14.01.2014)
+Release notes: version 0.3.3 (15.01.2014)
 
+- Fix (#15): update.sh prompt input minor errors
+- General update.sh script improvements
 - Fix (#12): issue with Ruby binary path
 - Fix (#14): Bad installation path from update.sh
 - Add FrontStack CLI support

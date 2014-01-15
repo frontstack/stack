@@ -11,6 +11,7 @@ download_dir='/tmp'
 output="${download_dir}/frontstack.log"
 download_status="${download_dir}/frontstack-download"
 lastest_version_file="${download_dir}/frontstack-latest"
+force=0
 
 get_basepath() {
   local basepath="$( cd "$( dirname "$0" )/../" && pwd )"
@@ -100,19 +101,30 @@ basepath=`get_basepath $0`
 version_file="$basepath/VERSION"
 version=`get_version $version_file`
 
-if [ $version == '0' ]; then 
+# force update without asking
+case $2 in
+  force|--force|-f)
+    force=1
+  ;;
+esac
+
+if [ -z $version ]; then 
   echo 'Warning: cannot check the local FrontStack version'
-  read -p 'Do you want to proceed anyway? [y/N]: ' res
-  if [ $res != 'y' ] && [ $res != 'Y' ]; then
-    echo 'Exiting' && exit 0
+  if [ $force -eq 0 ]; then
+    read -p 'Do you want to proceed anyway? [y/N]: ' res
+    if [ $res != 'y' ] && [ $res != 'Y' ]; then
+      echo 'Exiting' && exit 0
+    fi
   fi
 fi
 
 clean_files
 
+echo 'Checking for new versions...'
+echo
 # download the remote manifest file
 wget --no-check-certificate $check_url -O $lastest_version_file >> $output 2>&1
-check_exit "Cannot check the latest version, are you behind a web proxy?" "Remote version manifest: $check_url" "Log file: $output"
+check_exit "Cannot check the latest version, are you behind a web proxy?" "Remote version manifest: $check_url" "Output log: $output"
 latest_version=`get_version $lastest_version_file`
 [ $latest_version == '0' ] && echo "Latest version file don't exists. Check the Internet connectivity" && exit 1
 
@@ -127,10 +139,11 @@ echo "* Latest: $latest_version"
 tail -n+'2' "/tmp/frontstack-latest"
 
 echo 
-echo 
-read -p "Do you want to upgrade to $latest_version? [y/N]: " res
-if [ $res != 'y' ] && [ $res != 'Y' ]; then
-  echo 'Exiting' && exit 0
+echo
+if [ $force -eq 0 ]; then
+  read -p "Do you want to upgrade to $latest_version? [y/N]: " res
+  [ -z $res ]; echo 'Canceled' && exit 0
+  [ $res != 'y' ] && [ $res != 'Y' ] && [ $res != 'yes' ]; echo 'Canceled' && exit 0
 fi
 
 if [ ! -w $basepath ]; then
@@ -148,20 +161,22 @@ echo
 download_status $output $download_status
 check_exit "Error while trying to download FrontStack. See $output"
 
-cd $basepath
-echo
-echo 
-read -p 'Do you want to backup the current FrontStack version? [y/N]: ' res
-if [ ! -z $res ]; then
-  if [ $res == 'y' ] || [ $res == 'Y' ]; then
-    backup_file=/tmp/frontstack-$version-backup-`date +%Y%m%d"-"%H%M%S`.tar.gz
-    echo 
-    echo "Creating backup in: '$backup_file'"
-    tar cvzf $backup_file * > $output 2>&1
-    check_exit "Error while backing up FrontStack. See $output"
+if [ $force -eq 0 ]; then 
+  echo
+  echo
+  read -p 'Do you want to backup the current installed version? [y/N]: ' res
+  if [ ! -z $res ]; then
+    if [ $res != 'n' ] && [ $res != 'N' ] && [ $res != 'no' ]; then
+      cd $basepath
+      backup_file=/tmp/frontstack-$version-backup-`date +%Y%m%d"-"%H%M%S`.tar.gz
+      echo 
+      echo "Creating backup in: '$backup_file'"
+      tar cvzf $backup_file * > $output 2>&1
+      check_exit "Error while backing up FrontStack. See $output"
+      cd $cwd
+    fi
   fi
 fi
-cd $cwd
 
 echo 
 echo 'Cleaning old version...'
@@ -171,7 +186,6 @@ check_exit "Cannot remove the old version in $basepath" "Check file permissions 
 echo
 echo 'Installing new version...'
 [ ! -d $basepath ]; mkdir -p $basepath
-echo "tar xvfz $download_dir/frontstack-latest.tar.gz -C $basepath"
 tar xvfz $download_dir/frontstack-latest.tar.gz -C $basepath > $output 2>&1
 check_exit "Error while extracting files. Be sure you have write permissions. See $output"
 

@@ -1,13 +1,18 @@
 # FrontStack ChangeLog
 
-`0.3.2` 13.01.2013
+`0.3.3` 15.01.2014
+ 
+  - Fix (#15): update.sh prompt input minor errors
+  - General update.sh script improvements
 
-  - Fix #12: cannot find the Ruby binary path
+`0.3.2` 14.01.2014
+
+  - Fix (#12): cannot find the Ruby binary path
   - Fix (#14): Bad installation path from update.sh
   - Bash scripts minor improvements and refactor
   - Documentation general improvements
 
-`0.3.1` 09.01.2013
+`0.3.1` 09.01.2014
 
   - Add FrontStack CLI support
   - Bash scripts minor improvements
