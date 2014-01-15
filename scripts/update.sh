@@ -143,8 +143,10 @@ echo
 echo
 if [ $force -eq 0 ]; then
   read -p "Do you want to upgrade to $latest_version? [y/N]: " res
-  [ -z $res ]; echo 'Canceled' && exit 0
-  [ $res != 'y' ] && [ $res != 'Y' ] && [ $res != 'yes' ]; && echo 'Canceled' && exit 0
+  [ -z $res ] && echo 'Canceled' && exit 0
+  if [ $res != 'y' ] && [ $res != 'Y' ] && [ $res != 'yes' ]; then 
+    echo 'Canceled' && exit 0
+  fi
 fi
 
 if [ ! -w $basepath ]; then
