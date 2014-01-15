@@ -120,7 +120,7 @@ fi
 
 clean_files
 
-echo -n 'Checking new versions...'
+echo -n '>> Checking new versions...'
 echo -n R | tr 'R' '\r' 
 # download the remote manifest file
 wget --no-check-certificate $check_url -O $lastest_version_file >> $output 2>&1
