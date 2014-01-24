@@ -19,6 +19,8 @@ show_help() {
     Disable enviroment update
   update-unlock
     Enable enviroment updates
+  auth
+    Create a .netrc file with authentication credentials
   version  
     Show the current FrontStack version
   where [package]
@@ -32,6 +34,7 @@ show_help() {
 
   $ frontstack update
   $ fronstack where ruby
+  $ frontstack auth
 
 EOF
 }
@@ -79,6 +82,16 @@ version() {
   echo $version
 }
 
+create_netrc_file() {
+  read -p "Enter the hostname: " hostname
+  [ -z $hostname ] && echo 'Hostname required' && exit 0
+  read -p "Enter the login username: " login
+  [ -z $login ] && echo 'Login required' && exit 0
+  read -p "Enter the password: " password 
+  [ -z $password ] && echo 'Password required' && exit 0
+  echo "machine $hostname login $login password $password" >> $HOME/.netrc
+}
+
 . "${fs_basepath}/scripts/setenv.sh"
 
 case $cmd in
@@ -99,6 +112,9 @@ case $cmd in
     ;;
   info|i|--info|project|issues|links)
     info
+    ;;
+  netrc|auth|authfile)
+    create_netrc_file
     ;;
   help|h|--help|-h)
     show_help
